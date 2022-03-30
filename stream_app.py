@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 def place_go_today(day):
     fig = plot_figure(go_today[day], values)
     st.plotly_chart(fig, use_container_width=True)
-    st.write(to_go[['title']])
+    st.write(go_today[day][['title']])
 
 
 def plot_figure(my_df, ranges):
