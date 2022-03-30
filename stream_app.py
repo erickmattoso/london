@@ -10,7 +10,8 @@ import plotly.graph_objects as go
 def place_go_today(day):
     fig = plot_figure(go_today[day], values)
     st.plotly_chart(fig, use_container_width=True)
-    st.write(go_today[day][['title']])
+    df = go_today[day][["title", "price", "lat", "lng"]].reset_index(drop=True)
+    st.table(df)
 
 
 def plot_figure(my_df, ranges):
@@ -81,7 +82,7 @@ result = streamlit_bokeh_events(
     debounce_time=0)
 csv_csv = pd.read_csv('minha_london.csv')
 df = pd.read_csv('all_london.csv')
-MYHOME = [["Home", 51.4865817, -0.1024488, 0]]
+MYHOME = [["Home", 51.4865817, -0.1024488, '£0.00']]
 home = pd.DataFrame(MYHOME)
 home.columns = ["title", "lat", "lng", "price"]
 values = st.slider('Select a range of values', 0, len(df), (0, len(df)))
